@@ -1,5 +1,5 @@
 {
-    "name": "animation.player.dodge.backwardsleft",
+    "name": "dodge/forward",
     "author": "Elenai",
     "description": "I'm back, Baby!",
     "emote":{
@@ -20,27 +20,11 @@
                 }
             },
             {
-                "tick":8,
-                "easing": "LINEAR",
-                "turn": 0,
-                "head":{
-                    "y":0.6799001693725586
-                }
-            },
-            {
                 "tick":9,
                 "easing": "LINEAR",
                 "turn": 0,
                 "head":{
                     "y":0.8498754501342773
-                }
-            },
-            {
-                "tick":10,
-                "easing": "LINEAR",
-                "turn": 0,
-                "head":{
-                    "y":0.7082290649414062
                 }
             },
             {
@@ -60,27 +44,11 @@
                 }
             },
             {
-                "tick":8,
-                "easing": "LINEAR",
-                "turn": 0,
-                "head":{
-                    "z":-0.822597861289978
-                }
-            },
-            {
                 "tick":9,
                 "easing": "LINEAR",
                 "turn": 0,
                 "head":{
                     "z":-1.028247356414795
-                }
-            },
-            {
-                "tick":10,
-                "easing": "LINEAR",
-                "turn": 0,
-                "head":{
-                    "z":-0.8568727970123291
                 }
             },
             {
@@ -100,27 +68,11 @@
                 }
             },
             {
-                "tick":8,
-                "easing": "LINEAR",
-                "turn": 0,
-                "head":{
-                    "x":-3.342062196411632e-16
-                }
-            },
-            {
                 "tick":9,
                 "easing": "LINEAR",
                 "turn": 0,
                 "head":{
                     "x":-4.177577613165642e-16
-                }
-            },
-            {
-                "tick":10,
-                "easing": "LINEAR",
-                "turn": 0,
-                "head":{
-                    "x":-4.158284584907353e-16
                 }
             },
             {
@@ -140,27 +92,11 @@
                 }
             },
             {
-                "tick":8,
-                "easing": "LINEAR",
-                "turn": 0,
-                "head":{
-                    "yaw":1.1059051418276297e-16
-                }
-            },
-            {
                 "tick":9,
                 "easing": "LINEAR",
                 "turn": 0,
                 "head":{
                     "yaw":7.533070311049379e-17
-                }
-            },
-            {
-                "tick":10,
-                "easing": "LINEAR",
-                "turn": 0,
-                "head":{
-                    "yaw":1.980329943456052e-16
                 }
             },
             {
@@ -180,27 +116,11 @@
                 }
             },
             {
-                "tick":8,
-                "easing": "LINEAR",
-                "turn": 0,
-                "head":{
-                    "roll":-1.416000727443877e-16
-                }
-            },
-            {
                 "tick":9,
                 "easing": "LINEAR",
                 "turn": 0,
                 "head":{
                     "roll":-2.508524336891665e-16
-                }
-            },
-            {
-                "tick":10,
-                "easing": "LINEAR",
-                "turn": 0,
-                "head":{
-                    "roll":-1.5517490068977092e-16
                 }
             },
             {
@@ -220,27 +140,11 @@
                 }
             },
             {
-                "tick":8,
-                "easing": "LINEAR",
-                "turn": 0,
-                "head":{
-                    "pitch":1.1395705938339233
-                }
-            },
-            {
                 "tick":9,
                 "easing": "LINEAR",
                 "turn": 0,
                 "head":{
                     "pitch":0.6681117415428162
-                }
-            },
-            {
-                "tick":10,
-                "easing": "LINEAR",
-                "turn": 0,
-                "head":{
-                    "pitch":1.1921427249908447
                 }
             },
             {
@@ -256,15 +160,7 @@
                 "easing": "LINEAR",
                 "turn": 0,
                 "torso":{
-                    "yaw":-0.05235987901687622
-                }
-            },
-            {
-                "tick":2,
-                "easing": "LINEAR",
-                "turn": 0,
-                "torso":{
-                    "yaw":-0.10471975803375244
+                    "yaw":-7.505798890512067e-26
                 }
             },
             {
@@ -272,7 +168,7 @@
                 "easing": "LINEAR",
                 "turn": 0,
                 "torso":{
-                    "yaw":-0.13962633907794952
+                    "yaw":0.0
                 }
             },
             {
@@ -280,7 +176,7 @@
                 "easing": "LINEAR",
                 "turn": 0,
                 "torso":{
-                    "yaw":-0.13962633907794952
+                    "yaw":-2.675592056616919e-16
                 }
             },
             {
@@ -288,7 +184,7 @@
                 "easing": "LINEAR",
                 "turn": 0,
                 "torso":{
-                    "yaw":-0.13962633907794952
+                    "yaw":-4.3513117468835835e-16
                 }
             },
             {
@@ -296,7 +192,7 @@
                 "easing": "LINEAR",
                 "turn": 0,
                 "torso":{
-                    "yaw":-0.13962633907794952
+                    "yaw":-3.5120500622225453e-16
                 }
             },
             {
@@ -304,15 +200,7 @@
                 "easing": "LINEAR",
                 "turn": 0,
                 "torso":{
-                    "yaw":-0.13962633907794952
-                }
-            },
-            {
-                "tick":13,
-                "easing": "LINEAR",
-                "turn": 0,
-                "torso":{
-                    "yaw":0.0
+                    "yaw":-2.672788112863711e-16
                 }
             },
             {
@@ -324,11 +212,11 @@
                 }
             },
             {
-                "tick":2,
+                "tick":1,
                 "easing": "LINEAR",
                 "turn": 0,
                 "torso":{
-                    "roll":1.3004470369415671e-16
+                    "roll":-2.6864300086131602e-17
                 }
             },
             {
@@ -360,7 +248,7 @@
                 "easing": "LINEAR",
                 "turn": 0,
                 "torso":{
-                    "roll":-0.0
+                    "roll":1.7210237106717039e-18
                 }
             },
             {
@@ -368,7 +256,7 @@
                 "easing": "LINEAR",
                 "turn": 0,
                 "torso":{
-                    "roll":-0.0
+                    "roll":1.468805753992445e-17
                 }
             },
             {
@@ -380,11 +268,11 @@
                 }
             },
             {
-                "tick":2,
+                "tick":1,
                 "easing": "LINEAR",
                 "turn": 0,
                 "torso":{
-                    "pitch":-6.030322074890137
+                    "pitch":6.030315399169922
                 }
             },
             {
@@ -392,7 +280,7 @@
                 "easing": "LINEAR",
                 "turn": 0,
                 "torso":{
-                    "pitch":-4.765970706939697
+                    "pitch":4.765964984893799
                 }
             },
             {
@@ -400,7 +288,7 @@
                 "easing": "LINEAR",
                 "turn": 0,
                 "torso":{
-                    "pitch":-4.2070465087890625
+                    "pitch":4.207054138183594
                 }
             },
             {
@@ -408,7 +296,7 @@
                 "easing": "LINEAR",
                 "turn": 0,
                 "torso":{
-                    "pitch":-3.0892326831817627
+                    "pitch":3.0892326831817627
                 }
             },
             {
@@ -416,7 +304,7 @@
                 "easing": "LINEAR",
                 "turn": 0,
                 "torso":{
-                    "pitch":-2.286381244659424
+                    "pitch":2.286381244659424
                 }
             },
             {
@@ -424,7 +312,7 @@
                 "easing": "LINEAR",
                 "turn": 0,
                 "torso":{
-                    "pitch":-1.483529806137085
+                    "pitch":1.483529806137085
                 }
             },
             {
@@ -436,7 +324,7 @@
                 }
             },
             {
-                "tick":2,
+                "tick":1,
                 "easing": "LINEAR",
                 "turn": 0,
                 "torso":{
@@ -480,7 +368,7 @@
                 "easing": "LINEAR",
                 "turn": 0,
                 "torso":{
-                    "y":0.0019425451755523682
+                    "y":-0.6526026725769043
                 }
             },
             {
@@ -492,7 +380,7 @@
                 }
             },
             {
-                "tick":2,
+                "tick":1,
                 "easing": "LINEAR",
                 "turn": 0,
                 "torso":{
@@ -548,7 +436,7 @@
                 }
             },
             {
-                "tick":2,
+                "tick":1,
                 "easing": "LINEAR",
                 "turn": 0,
                 "torso":{
@@ -620,14 +508,6 @@
                 }
             },
             {
-                "tick":8,
-                "easing": "LINEAR",
-                "turn": 0,
-                "rightArm":{
-                    "yaw":1.961735187983656e-16
-                }
-            },
-            {
                 "tick":9,
                 "easing": "LINEAR",
                 "turn": 0,
@@ -649,14 +529,6 @@
                 "turn": 0,
                 "rightArm":{
                     "roll":6.619861061906264e-16
-                }
-            },
-            {
-                "tick":8,
-                "easing": "LINEAR",
-                "turn": 0,
-                "rightArm":{
-                    "roll":1.588760905621374e-16
                 }
             },
             {
@@ -684,14 +556,6 @@
                 }
             },
             {
-                "tick":8,
-                "easing": "LINEAR",
-                "turn": 0,
-                "rightArm":{
-                    "y":2.0
-                }
-            },
-            {
                 "tick":9,
                 "easing": "LINEAR",
                 "turn": 0,
@@ -716,14 +580,6 @@
                 }
             },
             {
-                "tick":8,
-                "easing": "LINEAR",
-                "turn": 0,
-                "rightArm":{
-                    "z":-0.0
-                }
-            },
-            {
                 "tick":9,
                 "easing": "LINEAR",
                 "turn": 0,
@@ -741,14 +597,6 @@
             },
             {
                 "tick":4,
-                "easing": "LINEAR",
-                "turn": 0,
-                "rightArm":{
-                    "x":-5.0
-                }
-            },
-            {
-                "tick":8,
                 "easing": "LINEAR",
                 "turn": 0,
                 "rightArm":{
@@ -780,14 +628,6 @@
                 }
             },
             {
-                "tick":8,
-                "easing": "LINEAR",
-                "turn": 0,
-                "rightArm":{
-                    "pitch":-3.5025811195373535
-                }
-            },
-            {
                 "tick":9,
                 "easing": "LINEAR",
                 "turn": 0,
@@ -812,14 +652,6 @@
                 }
             },
             {
-                "tick":8,
-                "easing": "LINEAR",
-                "turn": 0,
-                "leftArm":{
-                    "roll":-4.1557302511757894e-16
-                }
-            },
-            {
                 "tick":9,
                 "easing": "LINEAR",
                 "turn": 0,
@@ -836,14 +668,6 @@
                 }
             },
             {
-                "tick":8,
-                "easing": "LINEAR",
-                "turn": 0,
-                "leftArm":{
-                    "yaw":-1.9476605444249437e-16
-                }
-            },
-            {
                 "tick":9,
                 "easing": "LINEAR",
                 "turn": 0,
@@ -857,14 +681,6 @@
                 "turn": 0,
                 "leftArm":{
                     "pitch":-3.1306777000427246
-                }
-            },
-            {
-                "tick":8,
-                "easing": "LINEAR",
-                "turn": 0,
-                "leftArm":{
-                    "pitch":-3.1326467990875244
                 }
             },
             {
@@ -892,14 +708,6 @@
                 }
             },
             {
-                "tick":8,
-                "easing": "LINEAR",
-                "turn": 0,
-                "leftArm":{
-                    "y":2.0
-                }
-            },
-            {
                 "tick":9,
                 "easing": "LINEAR",
                 "turn": 0,
@@ -916,14 +724,6 @@
                 }
             },
             {
-                "tick":8,
-                "easing": "LINEAR",
-                "turn": 0,
-                "leftArm":{
-                    "z":-0.0
-                }
-            },
-            {
                 "tick":9,
                 "easing": "LINEAR",
                 "turn": 0,
@@ -933,14 +733,6 @@
             },
             {
                 "tick":4,
-                "easing": "LINEAR",
-                "turn": 0,
-                "leftArm":{
-                    "x":5.0
-                }
-            },
-            {
-                "tick":8,
                 "easing": "LINEAR",
                 "turn": 0,
                 "leftArm":{

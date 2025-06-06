@@ -1,10 +1,8 @@
 package com.elenai.elenaidodge2.networking;
 
 import com.elenai.elenaidodge2.ElenaiDodge2;
-import com.elenai.elenaidodge2.networking.messages.ConfigSyncSTCPacket;
 import com.elenai.elenaidodge2.networking.messages.DodgeAnimationSTCPacket;
 import com.elenai.elenaidodge2.networking.messages.DodgeEffectsCTSPacket;
-
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraftforge.network.NetworkDirection;
@@ -22,17 +20,10 @@ public class ED2Messages {
 	}
 
 	public static void register() {
-		SimpleChannel network = NetworkRegistry.ChannelBuilder.named(new ResourceLocation(ElenaiDodge2.MODID, "messages"))
+		SimpleChannel network = NetworkRegistry.ChannelBuilder.named(new ResourceLocation(ElenaiDodge2.MOD_ID, "messages"))
 				.networkProtocolVersion(() -> "1.0").clientAcceptedVersions(s -> true).serverAcceptedVersions(s -> true)
 				.simpleChannel();
 		INSTANCE = network;
-
-        
-        network.messageBuilder(ConfigSyncSTCPacket.class, id(), NetworkDirection.PLAY_TO_CLIENT)
-        .decoder(ConfigSyncSTCPacket::new)
-        .encoder(ConfigSyncSTCPacket::toBytes)
-        .consumerMainThread(ConfigSyncSTCPacket::handle)
-        .add();
         
         network.messageBuilder(DodgeAnimationSTCPacket.class, id(), NetworkDirection.PLAY_TO_CLIENT)
         .decoder(DodgeAnimationSTCPacket::new)

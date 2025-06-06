@@ -1,5 +1,5 @@
 {
-    "name": "animation.player.dodge",
+    "name": "dodge/left",
     "author": "Elenai",
     "description": "I'm back, Baby!",
     "emote":{
@@ -160,7 +160,7 @@
                 "easing": "LINEAR",
                 "turn": 0,
                 "torso":{
-                    "yaw":-7.505798890512067e-26
+                    "yaw":0.3490658402442932
                 }
             },
             {
@@ -168,7 +168,7 @@
                 "easing": "LINEAR",
                 "turn": 0,
                 "torso":{
-                    "yaw":0.0
+                    "yaw":0.7853981852531433
                 }
             },
             {
@@ -176,7 +176,7 @@
                 "easing": "LINEAR",
                 "turn": 0,
                 "torso":{
-                    "yaw":-2.675592056616919e-16
+                    "yaw":0.7853981852531433
                 }
             },
             {
@@ -184,7 +184,7 @@
                 "easing": "LINEAR",
                 "turn": 0,
                 "torso":{
-                    "yaw":-4.3513117468835835e-16
+                    "yaw":0.7853981852531433
                 }
             },
             {
@@ -192,7 +192,7 @@
                 "easing": "LINEAR",
                 "turn": 0,
                 "torso":{
-                    "yaw":-3.5120500622225453e-16
+                    "yaw":0.7853981852531433
                 }
             },
             {
@@ -200,7 +200,7 @@
                 "easing": "LINEAR",
                 "turn": 0,
                 "torso":{
-                    "yaw":-2.672788112863711e-16
+                    "yaw":0.7853981852531433
                 }
             },
             {
@@ -216,7 +216,7 @@
                 "easing": "LINEAR",
                 "turn": 0,
                 "torso":{
-                    "roll":-2.6864300086131602e-17
+                    "roll":-8.014375607502954e-17
                 }
             },
             {

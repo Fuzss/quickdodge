@@ -1,88 +1,55 @@
 package com.elenai.elenaidodge2.networking.messages;
 
-import java.util.function.Supplier;
-
-import com.elenai.elenaidodge2.ElenaiDodge2;
-import com.elenai.elenaidodge2.client.ED2ClientStorage;
+import com.elenai.elenaidodge2.client.animation.DodgeDirection;
 import com.elenai.elenaidodge2.client.animation.DodgeAnimator;
-
+import dev.kosmx.playerAnim.api.layered.IAnimation;
 import dev.kosmx.playerAnim.api.layered.KeyframeAnimationPlayer;
+import dev.kosmx.playerAnim.api.layered.ModifierLayer;
+import dev.kosmx.playerAnim.core.data.KeyframeAnimation;
 import dev.kosmx.playerAnim.minecraftApi.PlayerAnimationRegistry;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.player.AbstractClientPlayer;
 import net.minecraft.network.FriendlyByteBuf;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.network.NetworkEvent;
 
+import java.util.function.Supplier;
+
 public class DodgeAnimationSTCPacket {
-	
-	private final String direction;
-	private final int id;
-	
-		public DodgeAnimationSTCPacket(String direction, int id) {
-			this.direction = direction;
-			this.id = id;
-		}
+    private final DodgeDirection dodgeDirection;
+    private final int entityId;
 
-		public DodgeAnimationSTCPacket(FriendlyByteBuf buf) {
-			this.direction = buf.readUtf();
-			this.id = buf.readInt();
-		}
+    public DodgeAnimationSTCPacket(DodgeDirection dodgeDirection, int entityId) {
+        this.dodgeDirection = dodgeDirection;
+        this.entityId = entityId;
+    }
 
-		public void toBytes(FriendlyByteBuf buf) {
-			buf.writeUtf(direction);
-			buf.writeInt(id);
-		}
+    public DodgeAnimationSTCPacket(FriendlyByteBuf buf) {
+        this.dodgeDirection = buf.readEnum(DodgeDirection.class);
+        this.entityId = buf.readInt();
+    }
 
-		public boolean handle(Supplier<NetworkEvent.Context> supplier) {
-			NetworkEvent.Context context = supplier.get();
-			context.enqueueWork(() -> {
-				Minecraft instance = Minecraft.getInstance();
-				var player = instance.level.getEntity(id);
-				animatePlayer(DodgeAnimator.DodgeDirection.valueOf(direction), (AbstractClientPlayer) player);
-			});
-			return true;
-		}
-		
-		public static void animatePlayer(DodgeAnimator.DodgeDirection direction, AbstractClientPlayer player) {
-			if(ED2ClientStorage.isAnimating()) {
-				var animation = DodgeAnimator.animationData.get(player);
-				if (animation != null) {
-					switch (direction) {
-					case FORWARDS:
-						animation.setAnimation(new KeyframeAnimationPlayer(PlayerAnimationRegistry
-								.getAnimation(new ResourceLocation(ElenaiDodge2.MODID, "animation.player.dodge"))));
-						break;
-					case LEFT:
-						animation.setAnimation(new KeyframeAnimationPlayer(PlayerAnimationRegistry
-								.getAnimation(new ResourceLocation(ElenaiDodge2.MODID, "animation.player.dodge.left"))));
-						break;
-					case RIGHT:
-						animation.setAnimation(new KeyframeAnimationPlayer(PlayerAnimationRegistry
-								.getAnimation(new ResourceLocation(ElenaiDodge2.MODID, "animation.player.dodge.right"))));
-						break;
-					case FORWARDS_LEFT:
-						animation.setAnimation(new KeyframeAnimationPlayer(PlayerAnimationRegistry
-								.getAnimation(new ResourceLocation(ElenaiDodge2.MODID, "animation.player.dodge.forwardsleft"))));
-						break;
-					case FORWARDS_RIGHT:
-						animation.setAnimation(new KeyframeAnimationPlayer(PlayerAnimationRegistry
-								.getAnimation(new ResourceLocation(ElenaiDodge2.MODID, "animation.player.dodge.forwardsright"))));
-					break;
-					case BACKWARDS_LEFT:
-						animation.setAnimation(new KeyframeAnimationPlayer(PlayerAnimationRegistry
-								.getAnimation(new ResourceLocation(ElenaiDodge2.MODID, "animation.player.dodge.backwardsleft"))));
-						break;
-					case BACKWARDS_RIGHT:
-						animation.setAnimation(new KeyframeAnimationPlayer(PlayerAnimationRegistry
-								.getAnimation(new ResourceLocation(ElenaiDodge2.MODID, "animation.player.dodge.backwardsright"))));
-					break;
-					default:
-						animation.setAnimation(new KeyframeAnimationPlayer(PlayerAnimationRegistry
-								.getAnimation(new ResourceLocation(ElenaiDodge2.MODID, "animation.player.dodge.backwards"))));
-						break;
-					}
-				}
-			}
-		}
+    public void toBytes(FriendlyByteBuf buf) {
+        buf.writeEnum(this.dodgeDirection);
+        buf.writeInt(this.entityId);
+    }
+
+    public boolean handle(Supplier<NetworkEvent.Context> supplier) {
+        NetworkEvent.Context context = supplier.get();
+        context.enqueueWork(() -> {
+            if (Minecraft.getInstance().level.getEntity(this.entityId) instanceof AbstractClientPlayer player) {
+                animatePlayer(this.dodgeDirection, player);
+            }
+        });
+        return true;
+    }
+
+    public static void animatePlayer(DodgeDirection dodgeDirection, AbstractClientPlayer player) {
+        ModifierLayer<IAnimation> layer = DodgeAnimator.getAnimation(player);
+        if (layer != null) {
+            KeyframeAnimation animation = PlayerAnimationRegistry.getAnimation(dodgeDirection.animationLocation);
+            if (animation != null) {
+                layer.setAnimation(new KeyframeAnimationPlayer(animation));
+            }
+        }
+    }
 }

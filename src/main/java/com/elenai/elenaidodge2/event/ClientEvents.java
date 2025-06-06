@@ -3,52 +3,50 @@ package com.elenai.elenaidodge2.event;
 import com.elenai.elenaidodge2.ElenaiDodge2;
 import com.elenai.elenaidodge2.client.KeyBinding;
 import com.elenai.elenaidodge2.config.ED2ClientConfig;
+import com.elenai.elenaidodge2.util.DodgeHandler;
 import com.elenai.elenaidodge2.util.InputHandlers;
-
 import net.minecraft.client.Minecraft;
 import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.client.event.InputEvent;
 import net.minecraftforge.client.event.RegisterKeyMappingsEvent;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.TickEvent.ClientTickEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 
 public class ClientEvents {
 
-	public static int currentCooldown = 0;
+    @Mod.EventBusSubscriber(modid = ElenaiDodge2.MOD_ID, value = Dist.CLIENT)
+    public static class ClientForgeEvents {
+        @SubscribeEvent
+        public static void clientTickEvents(ClientTickEvent event) {
+            if (event.phase == TickEvent.Phase.START) {
+                Minecraft minecraft = Minecraft.getInstance();
+                if (minecraft.player != null && !minecraft.isPaused()) {
+                    if (DodgeHandler.dodgingCooldown > 0) {
+                        DodgeHandler.dodgingCooldown--;
+                    }
+                    if (ED2ClientConfig.DOUBLE_TAP_MODE.get()) {
+                        InputHandlers.doubleTapInputHandler(minecraft.player);
+                    }
+                    if (KeyBinding.DODGE_KEY.consumeClick() && !ED2ClientConfig.DOUBLE_TAP_MODE.get()) {
+                        InputHandlers.singleTapHandler(minecraft.player);
+                    }
+                }
+            }
+        }
+    }
 
-	@Mod.EventBusSubscriber(modid = ElenaiDodge2.MODID, value = Dist.CLIENT)
-	public static class ClientForgeEvents {
-		@SubscribeEvent
-		public static void onKeyInput(InputEvent.Key event) {
-			Minecraft instance = Minecraft.getInstance();
-			if (instance.player != null) {
-				if (KeyBinding.DODGE_KEY.consumeClick() && !ED2ClientConfig.DOUBLE_TAP_MODE.get()) {
-					InputHandlers.singleTapHandler();
-				} else if (ED2ClientConfig.DOUBLE_TAP_MODE.get()) {
-					InputHandlers.doubleTapInputHandler();
-				}
-			}
-		}
+    @Mod.EventBusSubscriber(modid = ElenaiDodge2.MOD_ID, value = Dist.CLIENT, bus = Mod.EventBusSubscriber.Bus.MOD)
+    public static class ClientModEvents {
+        @SubscribeEvent
+        public static void onKeyRegistry(RegisterKeyMappingsEvent event) {
+            event.register(KeyBinding.DODGE_KEY);
+        }
 
-		@SubscribeEvent
-		public static void clientTickEvents(ClientTickEvent event) {
-			Minecraft instance = Minecraft.getInstance();
-			if (event.phase == TickEvent.Phase.START && instance.player != null && !instance.isPaused()) {
-				if (currentCooldown > 0) {
-					currentCooldown--;
-				}
-			}
-		}
-
-	}
-
-	@Mod.EventBusSubscriber(modid = ElenaiDodge2.MODID, value = Dist.CLIENT, bus = Mod.EventBusSubscriber.Bus.MOD)
-	public static class ClientModEvents {
-		@SubscribeEvent
-		public static void onKeyRegistry(RegisterKeyMappingsEvent event) {
-			event.register(KeyBinding.DODGE_KEY);
-		}
-	}
+        @SubscribeEvent
+        public static void clientSetup(FMLClientSetupEvent event) {
+            event.enqueueWork(InputHandlers::init);
+        }
+    }
 }
