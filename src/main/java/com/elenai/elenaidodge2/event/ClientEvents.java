@@ -6,13 +6,14 @@ import com.elenai.elenaidodge2.config.ED2ClientConfig;
 import com.elenai.elenaidodge2.util.DodgeHandler;
 import com.elenai.elenaidodge2.util.InputHandlers;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.player.LocalPlayer;
 import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.client.event.MovementInputUpdateEvent;
 import net.minecraftforge.client.event.RegisterKeyMappingsEvent;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.TickEvent.ClientTickEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 
 public class ClientEvents {
 
@@ -22,17 +23,23 @@ public class ClientEvents {
         public static void clientTickEvents(ClientTickEvent event) {
             if (event.phase == TickEvent.Phase.START) {
                 Minecraft minecraft = Minecraft.getInstance();
-                if (minecraft.player != null && !minecraft.isPaused()) {
-                    if (DodgeHandler.dodgingCooldown > 0) {
-                        DodgeHandler.dodgingCooldown--;
-                    }
-                    if (ED2ClientConfig.DOUBLE_TAP_MODE.get()) {
-                        InputHandlers.doubleTapInputHandler(minecraft.player);
-                    }
-                    if (KeyBinding.DODGE_KEY.consumeClick() && !ED2ClientConfig.DOUBLE_TAP_MODE.get()) {
-                        InputHandlers.singleTapHandler(minecraft.player);
+                if (!minecraft.isPaused() && minecraft.player != null) {
+                    while (KeyBinding.DODGE_KEY.consumeClick()) {
+                        if (!ED2ClientConfig.DOUBLE_TAP_MODE.get()) {
+                            InputHandlers.singleTapHandler(minecraft.player);
+                        }
                     }
                 }
+            }
+        }
+
+        @SubscribeEvent
+        public static void onMovementInputUpdate(MovementInputUpdateEvent event) {
+            if (DodgeHandler.dodgingCooldown > 0) {
+                DodgeHandler.dodgingCooldown--;
+            }
+            if (ED2ClientConfig.DOUBLE_TAP_MODE.get()) {
+                InputHandlers.doubleTapInputHandler((LocalPlayer) event.getEntity());
             }
         }
     }
@@ -42,11 +49,6 @@ public class ClientEvents {
         @SubscribeEvent
         public static void onKeyRegistry(RegisterKeyMappingsEvent event) {
             event.register(KeyBinding.DODGE_KEY);
-        }
-
-        @SubscribeEvent
-        public static void clientSetup(FMLClientSetupEvent event) {
-            event.enqueueWork(InputHandlers::init);
         }
     }
 }

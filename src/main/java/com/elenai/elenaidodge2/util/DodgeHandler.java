@@ -18,8 +18,9 @@ public class DodgeHandler {
 
     public static void handleDodge(LocalPlayer player, DodgeDirection dodgeDirection) {
         if (dodgingCooldown == 0 && (player.isOnGround() || ED2ServerConfig.DODGE_WHILST_AIRBORNE.get())) {
-            if (!player.isPassenger() && !player.isCrouching() && !player.isSwimming() && !player.isFallFlying() &&
-                    !player.getAbilities().flying && !player.isSleeping() && !player.isAutoSpinAttack()) {
+            if (!player.isPassenger() && !player.isShiftKeyDown() && !player.isUnderWater() && !player.isUsingItem() &&
+                    !player.isFallFlying() && !player.getAbilities().flying && !player.isSleeping() &&
+                    !player.isAutoSpinAttack()) {
                 if (FeathersHelper.spendFeathers(ED2ServerConfig.DODGE_COST.get())) {
 
                     BlockPos blockPos = getBlockPosBelowThatAffectsMyMovement(player);

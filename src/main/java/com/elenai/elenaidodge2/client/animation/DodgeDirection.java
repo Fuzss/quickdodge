@@ -34,8 +34,8 @@ public enum DodgeDirection implements StringRepresentable {
         this.animationLocation = ElenaiDodge2.id("dodge/" + this.getSerializedName());
     }
 
-    public static DodgeDirection byMoveVector(Vec2 moveVector) {
-        return BY_MOVE_VECTOR.getOrDefault(new MoveVector(moveVector), FORWARD);
+    public static DodgeDirection byMoveVector(Vec2 moveVector, DodgeDirection fallback) {
+        return BY_MOVE_VECTOR.getOrDefault(new MoveVector(moveVector), fallback);
     }
 
     public double getLeftImpulse() {
@@ -57,7 +57,7 @@ public enum DodgeDirection implements StringRepresentable {
     private record MoveVector(double leftImpulse, double forwardImpulse) {
 
         public MoveVector(Vec2 moveVector) {
-            this(moveVector.x, moveVector.y);
+            this(Math.signum(moveVector.x), Math.signum(moveVector.y));
         }
     }
 }
