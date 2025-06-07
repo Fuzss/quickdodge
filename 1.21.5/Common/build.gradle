@@ -5,6 +5,7 @@ dependencies {
     modApi libs.puzzleslib.common
 
     // Player Animator
+    // TODO get this from version catalog
     modApi "dev.kosmx.player-anim:anim-core:2.0.2+1.21.5"
     modApi libs.playeranimator.common
 }

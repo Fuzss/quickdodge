@@ -1,12 +1,11 @@
 package fuzs.quickdodge.util;
 
 import com.google.common.collect.ImmutableMap;
+import fuzs.puzzleslib.api.network.v4.codec.ExtraStreamCodecs;
 import fuzs.quickdodge.QuickDodge;
 import io.netty.buffer.ByteBuf;
-import net.minecraft.network.codec.ByteBufCodecs;
 import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.util.ByIdMap;
 import net.minecraft.util.Mth;
 import net.minecraft.util.StringRepresentable;
 import net.minecraft.world.phys.Vec2;
@@ -16,7 +15,6 @@ import java.util.Arrays;
 import java.util.Locale;
 import java.util.Map;
 import java.util.function.Function;
-import java.util.function.IntFunction;
 
 /**
  * Basically {@link net.minecraft.core.Direction8}.
@@ -33,36 +31,35 @@ public enum DodgeDirection implements StringRepresentable {
 
     public static final StringRepresentable.EnumCodec<DodgeDirection> CODEC = StringRepresentable.fromEnum(
             DodgeDirection::values);
-    public static final IntFunction<DodgeDirection> BY_ID = ByIdMap.continuous(Enum::ordinal,
-            values(),
-            ByIdMap.OutOfBoundsStrategy.ZERO);
-    public static final StreamCodec<ByteBuf, DodgeDirection> STREAM_CODEC = ByteBufCodecs.idMapper(BY_ID,
-            Enum::ordinal);
+    public static final StreamCodec<ByteBuf, DodgeDirection> STREAM_CODEC = ExtraStreamCodecs.fromEnum(DodgeDirection.class);
     static final Map<Vector2i, DodgeDirection> BY_MOVE_VECTOR = Arrays.stream(values())
             .collect(ImmutableMap.toImmutableMap(DodgeDirection::getMoveVector, Function.identity()));
 
-    private final Vector2i moveVector;
+    private final int leftImpulse;
+    private final int forwardImpulse;
     public final ResourceLocation animationLocation;
 
     DodgeDirection(int leftImpulse, int forwardImpulse) {
-        this.moveVector = new Vector2i(leftImpulse, forwardImpulse);
+        this.leftImpulse = leftImpulse;
+        this.forwardImpulse = forwardImpulse;
         this.animationLocation = QuickDodge.id("dodge/" + this.getSerializedName());
     }
 
     public static DodgeDirection byMoveVector(Vec2 vec2, DodgeDirection fallback) {
+        // we need a vector implementation that supports hashing
         return BY_MOVE_VECTOR.getOrDefault(new Vector2i(Mth.sign(vec2.x), Mth.sign(vec2.y)), fallback);
     }
 
     private Vector2i getMoveVector() {
-        return this.moveVector;
+        return new Vector2i(this.leftImpulse, this.forwardImpulse);
     }
 
     public double getLeftImpulse() {
-        return this.moveVector.x;
+        return this.leftImpulse;
     }
 
     public double getForwardImpulse() {
-        return this.moveVector.y;
+        return this.forwardImpulse;
     }
 
     @Override

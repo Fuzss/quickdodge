@@ -1,5 +1,16 @@
 {
+  "attribute.quickdodge.dodge_strength": "Dodge Strength",
+  "enchantment.quickdodge.airstride": "Airstride",
+  "enchantment.quickdodge.airstride.desc": "Allows dodging while in mid-air.",
+  "enchantment.quickdodge.fleetfoot": "Fleetfoot",
+  "enchantment.quickdodge.fleetfoot.desc": "Increases the distance traveled when dodging.",
+  "enchantment.quickdodge.shockstep": "Shockstep",
+  "enchantment.quickdodge.shockstep.desc": "Damages mobs when dashing through them.",
   "key.categories.quickdodge": "Quick Dodge",
   "key.dodge": "Dodge",
-  "subtitles.dodge": "Player dodges"
+  "subtitles.dodge": "Player dodges",
+  "tutorial.double_tap_dodge.description": "Double tap %s, %s, %s or %s",
+  "tutorial.double_tap_dodge.title": "Get ready to dodge",
+  "tutorial.single_tap_dodge.description": "Dodge with %s",
+  "tutorial.single_tap_dodge.title": "Move through the world"
 }

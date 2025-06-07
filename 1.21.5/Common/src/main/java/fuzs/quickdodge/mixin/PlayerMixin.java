@@ -1,6 +1,6 @@
 package fuzs.quickdodge.mixin;
 
-import fuzs.quickdodge.handler.DodgeDurationHandler;
+import fuzs.quickdodge.handler.DodgeEffectsHandler;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Pose;
@@ -20,7 +20,7 @@ abstract class PlayerMixin extends LivingEntity {
 
     @Inject(method = "getDesiredPose", at = @At("HEAD"), cancellable = true)
     private void getDesiredPose(CallbackInfoReturnable<Pose> callback) {
-        if (DodgeDurationHandler.isDodging(Player.class.cast(this))) {
+        if (DodgeEffectsHandler.isDodging(Player.class.cast(this))) {
             // we just need a pose that has a size of a 0.6-block cube,
             // but swimming and fall flying also trigger the swimming animation,
             // while we want to keep the standing model for our custom animation
