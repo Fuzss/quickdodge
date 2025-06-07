@@ -1,0 +1,11 @@
+{
+  "dodge": {
+    "sounds": [
+      {
+        "type": "event",
+        "name": "entity.player.attack.sweep"
+      }
+    ],
+    "subtitle": "subtitles.dodge"
+  }
+}

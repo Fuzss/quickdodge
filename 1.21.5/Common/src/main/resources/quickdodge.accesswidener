@@ -1,0 +1,5 @@
+accessWidener   v2  named
+accessible  method  net/minecraft/world/entity/Entity   getInputVector  (Lnet/minecraft/world/phys/Vec3;FF)Lnet/minecraft/world/phys/Vec3;
+accessible  method  net/minecraft/world/entity/Entity   getBlockPosBelowThatAffectsMyMovement ()Lnet/minecraft/core/BlockPos;
+accessible  method  net/minecraft/world/entity/LivingEntity getFrictionInfluencedSpeed  (F)F
+accessible  field   net/minecraft/client/player/LocalPlayer sprintTriggerTime   I

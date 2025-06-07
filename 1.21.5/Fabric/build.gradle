@@ -6,4 +6,7 @@ dependencies {
 
     // Puzzles Lib
     modApi libs.puzzleslib.fabric
+
+    // Player Animator
+    modApi(include(libs.playeranimator.fabric.get()))
 }

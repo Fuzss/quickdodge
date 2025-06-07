@@ -3,4 +3,7 @@ apply from: "https://raw.githubusercontent.com/Fuzss/modresources/main/gradle/${
 dependencies {
     // Puzzles Lib
     modApi libs.puzzleslib.neoforge
+
+    // Player Animator
+    modApi(include(libs.playeranimator.neoforge.get()))
 }
