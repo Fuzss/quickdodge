@@ -1,6 +1,6 @@
-package com.elenai.elenaidodge2.client.animation;
+package com.elenai.elenaidodge.util;
 
-import com.elenai.elenaidodge2.ElenaiDodge2;
+import com.elenai.elenaidodge.ElenaiDodge;
 import com.google.common.collect.ImmutableMap;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.StringRepresentable;
@@ -31,7 +31,7 @@ public enum DodgeDirection implements StringRepresentable {
 
     DodgeDirection(int leftImpulse, int forwardImpulse) {
         this.moveVector = new Vec2(leftImpulse, forwardImpulse);
-        this.animationLocation = ElenaiDodge2.id("dodge/" + this.getSerializedName());
+        this.animationLocation = ElenaiDodge.id("dodge/" + this.getSerializedName());
     }
 
     public static DodgeDirection byMoveVector(Vec2 moveVector, DodgeDirection fallback) {
