@@ -1,0 +1,18 @@
+accessWidener   v2  named
+accessible  method  net/minecraft/world/entity/Entity   getInputVector  (Lnet/minecraft/world/phys/Vec3;FF)Lnet/minecraft/world/phys/Vec3;
+accessible  method  net/minecraft/world/entity/Entity   getBlockPosBelowThatAffectsMyMovement ()Lnet/minecraft/core/BlockPos;
+accessible  method  net/minecraft/world/entity/LivingEntity getFrictionInfluencedSpeed  (F)F
+accessible  field   net/minecraft/client/player/LocalPlayer sprintTriggerTime   I
+accessible  method  net/minecraft/client/gui/components/toasts/TutorialToast    contentHeight   ()I
+accessible  field   net/minecraft/client/gui/components/toasts/TutorialToast    lines   Ljava/util/List;
+accessible	method	net/minecraft/world/entity/LivingEntity	setLivingEntityFlag	(IZ)V
+accessible	field	net/minecraft/world/entity/LivingEntity	autoSpinAttackDmg	F
+accessible	field	net/minecraft/world/entity/LivingEntity	autoSpinAttackItemStack Lnet/minecraft/world/item/ItemStack;
+transitive-accessible	method	net/minecraft/world/item/enchantment/Enchantment	modifyItemFilteredCount	(Lnet/minecraft/core/component/DataComponentType;Lnet/minecraft/server/level/ServerLevel;ILnet/minecraft/world/item/ItemStack;Lorg/apache/commons/lang3/mutable/MutableFloat;)V
+transitive-accessible	method	net/minecraft/world/item/enchantment/Enchantment	modifyEntityFilteredValue	(Lnet/minecraft/core/component/DataComponentType;Lnet/minecraft/server/level/ServerLevel;ILnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/entity/Entity;Lorg/apache/commons/lang3/mutable/MutableFloat;)V
+transitive-accessible	method	net/minecraft/world/item/enchantment/Enchantment	modifyDamageFilteredValue	(Lnet/minecraft/core/component/DataComponentType;Lnet/minecraft/server/level/ServerLevel;ILnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/entity/Entity;Lnet/minecraft/world/damagesource/DamageSource;Lorg/apache/commons/lang3/mutable/MutableFloat;)V
+transitive-accessible	method	net/minecraft/world/item/enchantment/Enchantment	itemContext	(Lnet/minecraft/server/level/ServerLevel;ILnet/minecraft/world/item/ItemStack;)Lnet/minecraft/world/level/storage/loot/LootContext;
+transitive-accessible	method	net/minecraft/world/item/enchantment/Enchantment	locationContext	(Lnet/minecraft/server/level/ServerLevel;ILnet/minecraft/world/entity/Entity;Z)Lnet/minecraft/world/level/storage/loot/LootContext;
+transitive-accessible	method	net/minecraft/world/item/enchantment/Enchantment	entityContext	(Lnet/minecraft/server/level/ServerLevel;ILnet/minecraft/world/entity/Entity;Lnet/minecraft/world/phys/Vec3;)Lnet/minecraft/world/level/storage/loot/LootContext;
+transitive-accessible	method	net/minecraft/world/item/enchantment/Enchantment	blockHitContext	(Lnet/minecraft/server/level/ServerLevel;ILnet/minecraft/world/entity/Entity;Lnet/minecraft/world/phys/Vec3;Lnet/minecraft/world/level/block/state/BlockState;)Lnet/minecraft/world/level/storage/loot/LootContext;
+transitive-accessible	method	net/minecraft/world/item/enchantment/Enchantment	applyEffects	(Ljava/util/List;Lnet/minecraft/world/level/storage/loot/LootContext;Ljava/util/function/Consumer;)V
