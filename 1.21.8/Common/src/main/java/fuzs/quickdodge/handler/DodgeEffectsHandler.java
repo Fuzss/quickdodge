@@ -1,10 +1,10 @@
 package fuzs.quickdodge.handler;
 
+import fuzs.puzzleslib.api.item.v2.EnchantingHelper;
 import fuzs.quickdodge.QuickDodge;
 import fuzs.quickdodge.attachment.DodgeData;
 import fuzs.quickdodge.config.ServerConfig;
 import fuzs.quickdodge.init.ModRegistry;
-import fuzs.quickdodge.util.EnchantingHelper;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
@@ -26,24 +26,24 @@ public class DodgeEffectsHandler {
     public static final int DODGE_ANIMATION_TICKS = 15;
 
     @Nullable
-    private static AABB boundingBoxBeforeBash;
+    private static AABB originalBoundingBox;
 
     public static void onStartPlayerTick(Player player) {
-        boundingBoxBeforeBash = player.getBoundingBox();
+        originalBoundingBox = player.getBoundingBox();
     }
 
     public static void onPlayerTickEnd(Player player) {
         DodgeData dodgeData = ModRegistry.DODGE_DATA_ATTACHMENT_TYPE.get(player);
         if (dodgeData.remainingDodgeTicks().intValue() > 0) {
             dodgeData.remainingDodgeTicks().decrement();
-            if (boundingBoxBeforeBash != null) {
-                checkBashAttack(player, boundingBoxBeforeBash, dodgeData);
+            if (originalBoundingBox != null) {
+                checkBashAttack(player, originalBoundingBox, dodgeData);
             }
             if (dodgeData.remainingDodgeTicks().intValue() == 0) {
                 dodgeData.bashedEntityIds().clear();
             }
         }
-        boundingBoxBeforeBash = null;
+        originalBoundingBox = null;
     }
 
     /**

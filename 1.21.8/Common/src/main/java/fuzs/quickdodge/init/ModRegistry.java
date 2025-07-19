@@ -4,6 +4,7 @@ import fuzs.puzzleslib.api.attachment.v4.DataAttachmentRegistry;
 import fuzs.puzzleslib.api.attachment.v4.DataAttachmentType;
 import fuzs.puzzleslib.api.data.v2.AbstractDatapackRegistriesProvider;
 import fuzs.puzzleslib.api.init.v3.registry.RegistryManager;
+import fuzs.puzzleslib.api.init.v3.registry.ResourceKeyHelper;
 import fuzs.quickdodge.QuickDodge;
 import fuzs.quickdodge.attachment.DodgeData;
 import net.minecraft.core.Holder;
@@ -14,7 +15,6 @@ import net.minecraft.core.component.DataComponentType;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstrapContext;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.util.Unit;
@@ -85,7 +85,8 @@ public class ModRegistry {
                                 4,
                                 EquipmentSlotGroup.FEET))
                         .withEffect(EnchantmentEffectComponents.ATTRIBUTES,
-                                new EnchantmentAttributeEffect(getResourceLocation(FLEETFOOT_ENCHANTMENT),
+                                new EnchantmentAttributeEffect(ResourceKeyHelper.getResourceLocation(
+                                        FLEETFOOT_ENCHANTMENT),
                                         DODGE_STRENGTH_ATTRIBUTE,
                                         LevelBasedValue.perLevel(0.3F),
                                         AttributeModifier.Operation.ADD_MULTIPLIED_BASE)));
@@ -112,10 +113,5 @@ public class ModRegistry {
                                 new AddValue(LevelBasedValue.perLevel(1.0F)))
                         .withEffect(BASHING_DAMAGE_ENCHANTMENT_EFFECT_COMPONENT_TYPE.value(),
                                 new AddValue(LevelBasedValue.perLevel(4.0F, 2.0F))));
-    }
-
-    @Deprecated
-    public static ResourceLocation getResourceLocation(ResourceKey<?> resourceKey) {
-        return resourceKey.location().withPrefix(Registries.elementsDirPath(resourceKey.registryKey()) + ".");
     }
 }

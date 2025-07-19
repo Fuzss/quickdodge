@@ -1,5 +1,6 @@
 package fuzs.quickdodge.client.handler;
 
+import fuzs.puzzleslib.api.item.v2.EnchantingHelper;
 import fuzs.puzzleslib.api.network.v4.MessageSender;
 import fuzs.quickdodge.QuickDodge;
 import fuzs.quickdodge.config.ClientConfig;
@@ -11,19 +12,11 @@ import fuzs.quickdodge.util.DodgeDirection;
 import net.minecraft.client.player.ClientInput;
 import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.Holder;
-import net.minecraft.core.component.DataComponentType;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.enchantment.EnchantedItemInUse;
-import net.minecraft.world.item.enchantment.Enchantment;
-import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.phys.Vec2;
 import net.minecraft.world.phys.Vec3;
-import org.apache.commons.lang3.mutable.MutableBoolean;
 import org.jetbrains.annotations.Nullable;
 
 public class MovementInputHandler {
@@ -102,25 +95,10 @@ public class MovementInputHandler {
     }
 
     private static boolean isAbleToDodge(Player player) {
-        return (player.onGround() ||
-                has(player, ModRegistry.DODGE_WHILST_AIRBORNE_ENCHANTMENT_EFFECT_COMPONENT_TYPE.value())) &&
-                !player.isPassenger() && !player.isShiftKeyDown() && !player.isUnderWater() && !player.isUsingItem() &&
-                !player.isFallFlying() && !player.getAbilities().flying && !player.isSleeping() &&
-                !player.isAutoSpinAttack() && !player.hasEffect(MobEffects.BLINDNESS);
-    }
-
-    /**
-     * @see EnchantmentHelper#has(ItemStack, DataComponentType)
-     */
-    @Deprecated
-    public static boolean has(LivingEntity livingEntity, DataComponentType<?> componentType) {
-        MutableBoolean mutableBoolean = new MutableBoolean(false);
-        EnchantmentHelper.runIterationOnEquipment(livingEntity,
-                (Holder<Enchantment> holder, int enchantmentLevel, EnchantedItemInUse enchantedItemInUse) -> {
-                    if (holder.value().effects().has(componentType)) {
-                        mutableBoolean.setTrue();
-                    }
-                });
-        return mutableBoolean.booleanValue();
+        return (player.onGround() || EnchantingHelper.has(player,
+                ModRegistry.DODGE_WHILST_AIRBORNE_ENCHANTMENT_EFFECT_COMPONENT_TYPE.value())) && !player.isPassenger()
+                && !player.isShiftKeyDown() && !player.isUnderWater() && !player.isUsingItem() && !player.isFallFlying()
+                && !player.getAbilities().flying && !player.isSleeping() && !player.isAutoSpinAttack()
+                && !player.hasEffect(MobEffects.BLINDNESS);
     }
 }
